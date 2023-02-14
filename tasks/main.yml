@@ -1,0 +1,41 @@
+---
+- block:
+  - name: Install packages
+    apt:
+      name:
+        - apt-transport-https
+        - gnupg
+      update_cache: true
+
+  - name: Install GPG key
+    apt_key:
+      url: https://downloads.plex.tv/plex-keys/PlexSign.key
+      state: present
+      keyring: /etc/apt/trusted.gpg.d/plex.gpg
+
+  - name: Install repo
+    apt_repository:
+      repo: deb https://downloads.plex.tv/repo/deb/ public main
+      state: present
+      filename: plex
+      update_cache: true
+
+  - name: Install
+    apt:
+      name: plexmediaserver
+
+  # The Plex installation disables the repo, so we re-enable it here
+  - name: Re-enable repo
+    apt_repository:
+      repo: deb https://downloads.plex.tv/repo/deb/ public main
+      state: present
+      filename: plex
+
+  - name: Configure service
+    service:
+      name: plexmediaserver
+      state: "{{ plexmediaserver_service_state }}"
+      enabled: "{{ plexmediaserver_service_enabled }}"
+
+  become: true
+  tags: plexmediaserver
