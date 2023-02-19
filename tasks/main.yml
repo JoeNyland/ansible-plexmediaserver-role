@@ -1,5 +1,8 @@
 ---
-- block:
+- name: Install plexmediaserver
+  become: true
+  tags: plexmediaserver
+  block:
   - name: Install packages
     apt:
       name:
@@ -36,6 +39,3 @@
       name: plexmediaserver
       state: "{{ plexmediaserver_service_state }}"
       enabled: "{{ plexmediaserver_service_enabled }}"
-
-  become: true
-  tags: plexmediaserver
