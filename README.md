@@ -47,7 +47,7 @@ roles:
 License
 -------
 
-BSD
+MIT
 
 Author Information
 ------------------
