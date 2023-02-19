@@ -30,9 +30,19 @@ None.
 Example Playbook
 ----------------
 
-    - hosts: server
-      roles:
-         - joenyland.plexmediaserver
+```yaml
+# requirements.yml
+roles:
+  - name: joenyland.plexmediaserver
+    src: https://github.com/JoeNyland/ansible-plexmediaserver-role
+```
+
+```yaml
+# Playbook
+- hosts: server
+  roles:
+    - joenyland.plexmediaserver
+```
 
 License
 -------
