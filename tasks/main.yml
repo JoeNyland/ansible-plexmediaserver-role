@@ -28,13 +28,6 @@
     apt:
       name: plexmediaserver
 
-  # The Plex installation disables the repo, so we re-enable it here
-  - name: Re-enable repo
-    apt_repository:
-      repo: deb [signed-by=/etc/apt/trusted.gpg.d/plex.asc] https://downloads.plex.tv/repo/deb/ public main
-      state: present
-      filename: plex
-
   - name: Configure service
     service:
       name: plexmediaserver
