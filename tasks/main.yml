@@ -1,7 +1,9 @@
 ---
 - name: Install plexmediaserver
   become: true
-  tags: plexmediaserver
+  tags:
+    - plex
+    - plexmediaserver
   block:
   - name: Add apt key
     get_url:
