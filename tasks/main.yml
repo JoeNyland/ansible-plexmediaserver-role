@@ -55,3 +55,4 @@
       groups: "{{ plexmediaserver_user_groups }}"
       append: true
     when: plexmediaserver_user_groups | length > 0
+    notify: Restart plexmediaserver
