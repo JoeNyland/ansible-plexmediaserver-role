@@ -23,6 +23,9 @@ Should the plexmediaserver service start at boot?
 
 What state should the plexmediaserver service be in? e.g. started/stopped
 
+### `plexmediaserver_user_groups`
+
+A list of groups to add the plex user to.
 
 Dependencies
 ------------

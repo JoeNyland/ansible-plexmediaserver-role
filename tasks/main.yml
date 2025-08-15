@@ -26,3 +26,10 @@
       name: plexmediaserver
       state: "{{ plexmediaserver_service_state }}"
       enabled: "{{ plexmediaserver_service_enabled }}"
+
+  - name: Add plex user to groups
+    user:
+      name: plex
+      groups: "{{ plexmediaserver_user_groups }}"
+      append: true
+    when: plexmediaserver_user_groups | length > 0
