@@ -20,7 +20,30 @@
   - name: Install plexmediaserver
     apt:
       name: plexmediaserver
-
+  - name: Instruct Plex to use syslog for logging
+    tags:
+      - syslog
+      - logging
+    block:
+      - name: Create plexmediaserver.service.d directory
+        file:
+          path: /etc/systemd/system/plexmediaserver.service.d/
+          state: directory
+          owner: root
+          group: root
+          mode: '0755'
+      - name: Create override file
+        copy:
+          content: |
+            [Service]
+            Environment="PLEX_MEDIA_SERVER_USE_SYSLOG=true"
+          dest: /etc/systemd/system/plexmediaserver.service.d/override.conf
+          owner: root
+          group: root
+          mode: '0644'
+        notify:
+          - Reload systemd
+          - Restart plexmediaserver
   - name: Configure service
     service:
       name: plexmediaserver

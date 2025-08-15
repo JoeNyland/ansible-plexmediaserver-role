@@ -1,0 +1,10 @@
+---
+- name: Reload systemd
+  systemd:
+    daemon_reload: true
+- name: Restart plexmediaserver
+  service:
+    name: plexmediaserver
+    state: restarted
+    enabled: "{{ plexmediaserver_service_enabled }}"
+  when: plexmediaserver_service_enabled
