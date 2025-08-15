@@ -11,15 +11,13 @@
       dest: /etc/apt/trusted.gpg.d/plex.asc
       mode: '0644'
       force: true # Download new versions when they are available
-
   - name: Install repo
     apt_repository:
       repo: deb [signed-by=/etc/apt/trusted.gpg.d/plex.asc] https://downloads.plex.tv/repo/deb/ public main
       state: present
       filename: plex
       update_cache: true
-
-  - name: Install
+  - name: Install plexmediaserver
     apt:
       name: plexmediaserver
 
@@ -28,7 +26,6 @@
       name: plexmediaserver
       state: "{{ plexmediaserver_service_state }}"
       enabled: "{{ plexmediaserver_service_enabled }}"
-
   - name: Add plex user to groups
     user:
       name: plex
