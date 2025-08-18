@@ -8,7 +8,8 @@ galaxy_info:
   platforms:
   - name: Debian
     versions:
-      - bookworm # 12 (stable)
+      - trixie # 13 (stable)
+      - bookworm # 12 (oldstable)
   galaxy_tags:
     - plex
 dependencies: []
