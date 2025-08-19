@@ -8,14 +8,18 @@
   - name: Add apt key
     get_url:
       url: https://downloads.plex.tv/plex-keys/PlexSign.key
-      dest: /etc/apt/trusted.gpg.d/plex.asc
+      dest: /usr/share/keyrings/plexmediaserver.gpg
       mode: '0644'
       force: true # Download new versions when they are available
+  - name: Get architecture
+    command: dpkg --print-architecture
+    register: deb_architecture
+    changed_when: false
   - name: Install repo
     apt_repository:
-      repo: deb [signed-by=/etc/apt/trusted.gpg.d/plex.asc] https://downloads.plex.tv/repo/deb/ public main
+      repo: "deb [arch={{ deb_architecture.stdout }} signed-by=/usr/share/keyrings/plexmediaserver.gpg] https://downloads.plex.tv/repo/deb/ public main"
       state: present
-      filename: plex
+      filename: plexmediaserver
       update_cache: true
   - name: Install plexmediaserver
     apt:
