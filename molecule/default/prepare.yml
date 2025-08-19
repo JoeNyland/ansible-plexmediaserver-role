@@ -23,3 +23,7 @@
         mode: '0755'
         owner: plex
         group: plex
+    - name: Install gpg
+      apt:
+        name: gnupg2
+        update_cache: true
