@@ -5,6 +5,10 @@
     - plex
     - plexmediaserver
   block:
+  - name: Install python3-debian
+    apt:
+      name: python3-debian
+      update_cache: true
   - name: Install repo
     deb822_repository:
       name: plexmediaserver
