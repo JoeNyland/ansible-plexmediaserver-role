@@ -14,12 +14,12 @@
       name: plexmediaserver
       types: deb
       uris:
-        - https://downloads.plex.tv/repo/deb
+        - https://repo.plex.tv/deb
       suites:
         - public
       components:
         - main
-      signed_by: https://downloads.plex.tv/plex-keys/PlexSign.key
+      signed_by: https://downloads.plex.tv/plex-keys/PlexSign.v2.key
   - name: Install plexmediaserver
     apt:
       name: plexmediaserver
